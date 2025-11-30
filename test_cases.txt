@@ -1,0 +1,49 @@
+Essential API Test Cases for BOT GPT Backend
+
+1. Create Conversation
+Method: POST
+URL: http://localhost:8000/conversations
+Body:
+{
+  "title": "Demo Chat",
+  "first_message": "Hello!"
+}
+Expected: 200 OK, returns conversation_id and answer.
+
+2. Add Message to Conversation
+Method: POST
+URL: http://localhost:8000/conversations/1/messages
+Body:
+{
+  "message": "what is Heuristic search."
+}
+Expected: 200 OK, returns answer.
+
+3. List Conversations
+Method: GET
+URL: http://localhost:8000/conversations
+Expected: 200 OK, returns array of conversations.
+
+4. Get Conversation History
+Method: GET
+URL: http://localhost:8000/conversations/1
+Expected: 200 OK, returns messages array.
+
+5. Delete Conversation
+Method: DELETE
+URL: http://localhost:8000/conversations/1
+Expected: 200 OK, status: deleted.
+
+6. Invalid Conversation ID
+Method: GET
+URL: http://localhost:8000/conversations/999
+Expected: 404 Not Found.
+
+7. Missing Required Fields
+Method: POST
+URL: http://localhost:8000/conversations
+Body:
+{
+  "title": "Incomplete"
+}
+Expected: 422 Unprocessable Entity.
